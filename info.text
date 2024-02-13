@@ -101,3 +101,16 @@ Same as test3.py but with more accurate parameters
 Ro = 0.3 ; Re = 3*10**5 ; B = 1.1 ; C = 0.06 ; Pe = 3*10**5
 Observation: upto time = 120 hours the solution looks pretty close to Galewsky test problem results
 
+##########test9.py#######
+location: ./parallel_run
+we ran the test on 4 cores
+our domain covers 50 degree longitude area of earth (from 20 degree latitude to 70 degree latitude)
+y0 = 4/35 ; y1 = 31/35
+Ro = 0.29 ; Re = 4*10**5 ; B = 2.4 ; C = 0.06 ; Pe = 4*10**5
+Ny = 128 # resolution 43 km
+Nx = 5*Ny
+Dt =0.02 # roughly 23 minutes
+Ran for 370 time steps (equivalent to ~ 143 hours)
+Observation: The flow looks similar to Galewsky test case with diffusion.
+In our test nu = 10^3
+
