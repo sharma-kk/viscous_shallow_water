@@ -1,0 +1,103 @@
+#########test0.py#######
+mesh: 448x64
+Lx = 7; Ly = 1 (after non-dimensionalization)
+initial veloctiy: similar to Galewsky test case
+unperturbed height, h0: geostrophic height
+perturbed height: 1 + h0 + 0.01*cos(math.pi*y/2)*exp(-4*(x  - 3.5)**2)*exp(-81*(y - 0.5)**2)
+u/h: P1/P1 "CG"
+Ro = 10^-1; B = 1 (coiolis force varies with y); C = 10^-2 
+Solution stored in ./results/test.pvd file
+
+##########test1.py#######
+mesh: 448x64
+Dt : 0.02
+We run the model starting from peturbed height
+u/h: P1/P1 "CG"
+Ro = 10^-1; B = 0 (no Coriolis force variation); C = 10^-2; Re = Pe = 10^3
+initial veloctiy: similar to Galewsky test case
+unperturbed height, h0: geostrophic height
+perturbed height: 1 + h0 + 0.01*cos(math.pi*y/2)*exp(-15*(x  - 3.5)**2)*exp(-3*(y - 0.5)**2)
+Solution stored in ./results/rsw1.pvd file
+Observations: The solution looks similar to Galewsky test case results. The initial
+pertubation was quite high (i did some mistake in calculations).
+
+##########test2.py#######
+mesh: 448x64
+Dt : 0.02
+We run the model starting from peturbed height
+u/h: P1/P1 "CG"
+Ro = 10^-1; B = 1 (Coriolis force varies with y); C = 10^-2; Re = Pe = 10^3
+initial veloctiy: similar to Galewsky test case
+unperturbed height, h0: geostrophic height
+perturbed height: 1 + h0 + 0.01*cos(math.pi*y/2)*exp(-4*(x  - 3.5)**2)*exp(-81*(y - 0.5)**2)
+Solution stored in ./results/rsw2.pvd file
+Ran for 500 time steps
+Observations: The solution remained geostrophic for long time. I think this was because of low resolution
+and not high enough Re/Pe
+
+##########test3.py#######
+mesh: 448x64
+Dt : 0.02
+We run the model starting from peturbed height
+u/h: P1/P1 "CG"
+Ro = 10^-1; B = 1 (Coriolis force varies with y); C = 10^-2; Re = Pe = 10^5
+initial veloctiy: similar to Galewsky test case
+unperturbed height, h0: geostrophic height
+perturbed height: 1 + h0 + 0.01*cos(math.pi*y/2)*exp(-4*(x  - 3.5)**2)*exp(-81*(y - 0.5)**2)
+Solution stored in ./results/rsw3.pvd file
+Ran for 600 time-steps
+Observations: The solution evolved to complex scales. The solution looks similar to Galewsky test case results.
+
+##########test4.py#######
+file is in ./parallel_run
+We ran this test on multiple cores (4)
+mesh: 896x128
+Dt : 0.02
+We run the model starting from peturbed height
+u/h: P1/P1 "CG"
+Ro = 10^-1; B = 1 (Coriolis force varies with y); C = 10^-2; Re = Pe = 10^5
+initial veloctiy: similar to Galewsky test case
+unperturbed height, h0: geostrophic height
+perturbed height: 1 + h0 + 0.01*cos(math.pi*y/2)*exp(-4*(x  - 3.5)**2)*exp(-81*(y - 0.5)**2)
+Solution stored in ./results/rsw4.pvd file
+Ran for 600 time-steps
+Observations: Results similar to test2 but the field were smoother (obviously). I think i can get 
+results very similar to galewsky if i increase L_x but then beta-plane approximation maynot make sense.
+
+##########test5.py#######
+I observed some jumps in the height field at the top and bottom boundaries. 
+I think there was a mistake in the weak formulation used 
+in the previous tests. I am now running with updated
+weak formulation. 
+The test configuration is same as test3.py except a change 
+in the weak formulation.
+Observations: I didn't see any change in the simulation results
+The height still jumps at the top and bottom boundaries.
+Maybe it's alright if it jumps. I should ask Peter about it.
+After thinking about it, i found out that both weak formulations are same. 
+
+##########test6.py#######
+file is in ./parallel_run
+We ran this test on multiple cores (4)
+mesh: 448x128 (size: 3.5x1)
+Dt: 0.01
+Ro = 0.4; B = 7; Re = Pe = 6*10^5; L_y = 7782 km
+simulating flow on earth from 10 degree latitude to 80 degree latitude
+Weak formulation same as test4.py
+Ran for 600 time steps # roughly 162 hours (6.75 days)of real time
+
+##########test7.py#######
+We are not adding pertubation to the height field
+We want to see how long the flow remains geostrophic. 
+We have added some viscosity so we don't know how long the flow can sustain geostrophic conditions.
+We running the model with configuratin same as test3.py
+We are running for 450 time steps which corresponds to 120 hours
+We did some more changes in the parameters in comparison to test3
+We are taking more accurate non-dimensional parameters this time. 
+Observation: The geostrophic balance hold for 120 hours.
+
+##########test8.py#######
+Same as test3.py but with more accurate parameters
+Ro = 0.3 ; Re = 3*10**5 ; B = 1.1 ; C = 0.06 ; Pe = 3*10**5
+Observation: upto time = 120 hours the solution looks pretty close to Galewsky test problem results
+
