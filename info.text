@@ -80,8 +80,9 @@ After thinking about it, i found out that both weak formulations are same.
 file is in ./parallel_run
 We ran this test on multiple cores (4)
 mesh: 448x128 (size: 3.5x1)
+y0 = 11/49 ; y1 = 38/49
 Dt: 0.01
-Ro = 0.4; B = 7; Re = Pe = 6*10^5; L_y = 7782 km
+Ro = 0.4; B = 6.9; Re = Pe = 6*10^5; L_y = 7782 km
 simulating flow on earth from 10 degree latitude to 80 degree latitude
 Weak formulation same as test4.py
 Ran for 600 time steps # roughly 162 hours (6.75 days)of real time

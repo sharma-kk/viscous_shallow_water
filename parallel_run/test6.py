@@ -17,7 +17,7 @@ V0 = FunctionSpace(mesh, "DG", 0)
 x, y = SpatialCoordinate(mesh)
 
 # define dimensionless parameters
-Ro = 0.4 ; Re = 6*10**5 ; B = 7 ; C = 0.06 ; Pe = 6*10**5
+Ro = 0.4 ; Re = 6*10**5 ; B = 6.9 ; C = 0.06 ; Pe = 6*10**5
 
 # define initial condtions
 y0 = 11/49 ; y1 = 38/49
