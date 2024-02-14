@@ -20,7 +20,7 @@ x, y = SpatialCoordinate(mesh)
 Ro = 0.4 ; Re = 6*10**5 ; B = 7 ; C = 0.06 ; Pe = 6*10**5
 
 # define initial condtions
-y0 = 2/7 ; y1 = 5/7
+y0 = 11/49 ; y1 = 38/49
 
 u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(1/((y - y0)*(y - y1)))*exp(4/(y1 - y0)**2))
 u0_2 = 0.0
@@ -45,7 +45,7 @@ h0_c = 1.0
 c0 = 0.01 ; c1 = 16 ;  c2 = 324 ; x_0 = 1.75; y_2 = 0.5
 h0_p = interpolate(c0*cos(math.pi*y/2)*exp(-c1*(x  - x_0)**2)*exp(-c2*(y - y_2)**2), V2)
 
-h0_f = interpolate(h0_c + h0 + c0*cos(math.pi*y/2)*exp(-c1*(x  - x_0)**2)*exp(-c2*(y - y_2)**2), V2) # perturbed initial height
+h0_f = interpolate(h0_c + h0 + h0_p, V2) # perturbed initial height
 
 # Variational formulation
 Z = V1*V2
@@ -89,7 +89,7 @@ t_end = Dt*600
 t = Dt
 iter_n = 1
 freq = 10
-t_step = freq*Dt
+t_step = freq*Dt # 2.67 hours
 current_time = time.strftime("%H:%M:%S", time.localtime())
 PETSc.Sys.Print("Local time at the start of simulation:",current_time)
 start_time = time.time()
