@@ -7,6 +7,7 @@ perturbed height: 1 + h0 + 0.01*cos(math.pi*y/2)*exp(-4*(x  - 3.5)**2)*exp(-81*(
 u/h: P1/P1 "CG"
 Ro = 10^-1; B = 1 (coiolis force varies with y); C = 10^-2 
 Solution stored in ./results/test.pvd file
+made changes in meridional flow; included a factor of alpha
 
 ##########test1.py#######
 mesh: 448x64
