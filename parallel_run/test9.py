@@ -21,8 +21,8 @@ Ro = 0.29 ; Re = 4*10**5 ; B = 2.4 ; C = 0.06 ; Pe = 4*10**5
 
 # define initial condtions
 y0 = 4/35 ; y1 = 31/35
-
-u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(1/((y - y0)*(y - y1)))*exp(4/(y1 - y0)**2))
+alpha = 1.14 # 18/5pi 
+u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(alpha**2/((y - y0)*(y - y1)))*exp(4*alpha**2/(y1 - y0)**2))
 u0_2 = 0.0
 
 u0 = project(as_vector([u0_1, u0_2]), V1)
@@ -84,7 +84,7 @@ outfile.write(u_, h_, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*370
+t_end = Dt*380
 
 t = Dt
 iter_n = 1

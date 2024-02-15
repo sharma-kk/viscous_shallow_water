@@ -115,4 +115,6 @@ Dt =0.02 # roughly 23 minutes
 Ran for 370 time steps (equivalent to ~ 143 hours)
 Observation: The flow looks similar to Galewsky test case with diffusion.
 In our test nu = 10^3
+Now running again for 380 time steps, included a factor of alpha in zonal veloctiy
+
 
