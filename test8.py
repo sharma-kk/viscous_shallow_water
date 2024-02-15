@@ -6,7 +6,7 @@ import math
 import time
 
 N = 64
-mesh = PeriodicRectangleMesh(7*N, N, 7, 1, direction="x")
+mesh = PeriodicRectangleMesh(7*N, N, 7, 1, direction="x") #resolution ~ 61 km
 
 V1 = VectorFunctionSpace(mesh, "CG", 1)
 V2 = FunctionSpace(mesh, "CG", 1)
@@ -15,12 +15,12 @@ V0 = FunctionSpace(mesh, "DG", 0)
 x, y = SpatialCoordinate(mesh)
 
 # define dimensionless parameters
-Ro = 0.3 ; Re = 3*10**5 ; B = 1.1 ; C = 0.06 ; Pe = 3*10**5
+Ro = 0.3 ; Re = 3*10**5 ; B = 1.17 ; C = 0.06 ; Pe = 3*10**5
 
 # define initial condtions
 y0 = 1/14 ; y1 = 13/14
-
-u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(1/((y - y0)*(y - y1)))*exp(4/(y1 - y0)**2))
+alpha = 1.64
+u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(alpha**2/((y - y0)*(y - y1)))*exp(4*alpha**2/(y1 - y0)**2))
 u0_2 = 0.0
 
 u0 = project(as_vector([u0_1, u0_2]), V1)
@@ -59,7 +59,7 @@ h_.assign(h0_f)
 
 perp = lambda arg: as_vector((-arg[1], arg[0]))
 
-Dt =0.02
+Dt =0.02 # 16.2 minutes
 
 F = ( inner(u-u_,v)
     + Dt*0.5*(inner(dot(u, nabla_grad(u)), v) + inner(dot(u_, nabla_grad(u_)), v))
@@ -82,7 +82,7 @@ outfile.write(u_, h_, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*600 # we are running for ~162 hours
+t_end = Dt*550 # we are running for ~147 hours
 
 t = Dt
 iter_n = 1

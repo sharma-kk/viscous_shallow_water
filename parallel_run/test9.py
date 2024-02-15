@@ -44,8 +44,8 @@ solve(a == L, h0, nullspace=nullspace)
 h0_c = 1.0
 c0 = 0.01 ; c1 = 9 ;  c2 = 169 ; x_0 = 2.5; y_2 = 0.5
 h0_p = interpolate(c0*cos(math.pi*y/2)*exp(-c1*(x  - x_0)**2)*exp(-c2*(y - y_2)**2), V2)
-
-h0_f = interpolate(h0_c + h0 + h0_p, V2) # perturbed initial height
+h_bal = interpolate(h0_c + h0, V2)
+h_init = interpolate(h0_c + h0 + h0_p, V2) # perturbed initial height
 
 # Variational formulation
 Z = V1*V2
@@ -57,11 +57,11 @@ u_ = Function(V1)
 h_ = Function(V2)
 
 u_.assign(u0)
-h_.assign(h0_f)
+h_.assign(h_init)
 
 perp = lambda arg: as_vector((-arg[1], arg[0]))
 
-Dt =0.02 # roughly 23 minutes
+Dt =0.01 # roughly 11.5 minutes
 
 F = ( inner(u-u_,v)
     + Dt*0.5*(inner(dot(u, nabla_grad(u)), v) + inner(dot(u_, nabla_grad(u_)), v))
@@ -77,14 +77,15 @@ bound_cond = [DirichletBC(Z.sub(0).sub(1), Constant(0.0), (1,2))]
 vort_ = interpolate(u_[1].dx(0) - u_[0].dx(1), V0)
 vort_.rename("vorticity")
 h_.rename("height")
+h0_p.rename("h_inst - h_bal") # instantaneous height - balanced unperturbed height
 u_.rename("velocity")
 
 outfile = File("./results/rsw9.pvd")
-outfile.write(u_, h_, vort_)
+outfile.write(u_, h_, h0_p, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*380
+t_end = Dt*760 # ~145 hours
 
 t = Dt
 iter_n = 1
@@ -110,7 +111,9 @@ while (round(t,4) <= t_end):
         vort.rename("vorticity")
         h.rename("height")
         u.rename("velocity")
-        outfile.write(u, h, vort)
+        h0_p.assign(h - h_bal)
+        h0_p.rename("h_inst - h_bal") # instantaneous height - balanced unperturbed height
+        outfile.write(u, h, h0_p,vort)
     u_.assign(u)
     h_.assign(h)
 

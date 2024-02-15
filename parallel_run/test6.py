@@ -17,12 +17,12 @@ V0 = FunctionSpace(mesh, "DG", 0)
 x, y = SpatialCoordinate(mesh)
 
 # define dimensionless parameters
-Ro = 0.4 ; Re = 6*10**5 ; B = 6.9 ; C = 0.06 ; Pe = 6*10**5
+Ro = 0.4 ; Re = 6*10**5 ; B = 6.93 ; C = 0.06 ; Pe = 6*10**5
 
 # define initial condtions
 y0 = 11/49 ; y1 = 38/49
-
-u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(1/((y - y0)*(y - y1)))*exp(4/(y1 - y0)**2))
+alpha = 0.82
+u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(alpha**2/((y - y0)*(y - y1)))*exp(4*alpha**2/(y1 - y0)**2))
 u0_2 = 0.0
 
 u0 = project(as_vector([u0_1, u0_2]), V1)
@@ -84,7 +84,7 @@ outfile.write(u_, h_, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*600
+t_end = Dt*550 # 147 hours
 
 t = Dt
 iter_n = 1

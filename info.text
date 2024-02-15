@@ -87,6 +87,9 @@ Ro = 0.4; B = 6.9; Re = Pe = 6*10^5; L_y = 7782 km
 simulating flow on earth from 10 degree latitude to 80 degree latitude
 Weak formulation same as test4.py
 Ran for 600 time steps # roughly 162 hours (6.75 days)of real time
+I ran the model again after introducing alpha factor in initial velocity
+this time I ran for 550 time steps
+other changes: B = 6.93
 
 ##########test7.py#######
 We are not adding pertubation to the height field
@@ -102,6 +105,9 @@ Observation: The geostrophic balance hold for 120 hours.
 Same as test3.py but with more accurate parameters
 Ro = 0.3 ; Re = 3*10**5 ; B = 1.1 ; C = 0.06 ; Pe = 3*10**5
 Observation: upto time = 120 hours the solution looks pretty close to Galewsky test problem results
+Ran the model again after introduction alpha factor in the initial velocity
+Changes: ran for 550 time steps, B = 1.17
+In the end i chose to not run this test (second time), i just made the changes in the script
 
 ##########test9.py#######
 location: ./parallel_run
@@ -115,6 +121,7 @@ Dt =0.02 # roughly 23 minutes
 Ran for 370 time steps (equivalent to ~ 143 hours)
 Observation: The flow looks similar to Galewsky test case with diffusion.
 In our test nu = 10^3
-Now running again for 380 time steps, included a factor of alpha in zonal veloctiy
+Now running again for 760 time steps which corresponds to 145 hours(with Dt = 0.01), included a factor of alpha in zonal veloctiy
+also mointoring instantaneous height minus balanced height
 
 
