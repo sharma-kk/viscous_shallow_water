@@ -5,8 +5,9 @@ from firedrake import *
 import math
 import time
 
-N = 64
-mesh = PeriodicRectangleMesh(7*N, N, 7, 1, direction="x") # L = 3891 km; R = 6370 km
+Ny = 128 # resolution 43 km
+Nx = 5*Ny
+mesh = PeriodicRectangleMesh(Nx, Ny, 5, 1, direction="x")
 
 V1 = VectorFunctionSpace(mesh, "CG", 1)
 V2 = FunctionSpace(mesh, "CG", 1)
@@ -15,11 +16,11 @@ V0 = FunctionSpace(mesh, "DG", 0)
 x, y = SpatialCoordinate(mesh)
 
 # define dimensionless parameters
-Ro = 10**(-1) ; Re = 10**3 ; B = 10**0 ; C = 10**(-2) ; Pe = 10**3
+Ro = 0.29 ; Re = 4*10**5 ; B = 2.4 ; C = 0.06 ; Pe = 4*10**5
 
 # define initial condtions
-y0 = 1/14 ; y1 = 13/14
-alpha = 1.63 # 1/delta phi where phi is 35 degrees
+y0 = 4/35 ; y1 = 31/35
+alpha = 1.14 # 18/5pi 
 u0_1 = conditional(Or(y <= y0, y >= y1), 0.0, exp(alpha**2/((y - y0)*(y - y1)))*exp(4*alpha**2/(y1 - y0)**2))
 u0_2 = 0.0
 
@@ -40,17 +41,17 @@ solve(a == L, h0, nullspace=nullspace)
 
 # height perturbation
 h0_c = 1.0
-c0 = 0.01 ; c1 = 4 ;  c2 = 81 ; x_0 = 3.5; y_2 = 0.5
+c0 = 0.01 ; c1 = 9 ;  c2 = 169 ; x_0 = 2.5; y_2 = 0.5
 
-h0_i = interpolate(h0_c + h0 , V2)
+h0_b = interpolate(h0_c + h0 , V2)
 h0_p = interpolate(c0*cos(math.pi*y/2)*exp(-c1*(x  - x_0)**2)*exp(-c2*(y - y_2)**2), V2)
 h0_f = interpolate(h0_c + h0 + h0_p, V2) # perturbed initial height
 
 outfile = File("./results/test.pvd")
 h0.rename("avg_h")
-h0_i.rename("init_h")
-h0_p.rename("pert_h")
-h0_f.rename("final_h")
+h0_b.rename("balanced_h")
+h0_p.rename("perturbation")
+h0_f.rename("h_after_pertb")
 u0.rename("init_vel")
 
-outfile.write(h0, h0_i, h0_p, h0_f,u0)
+outfile.write(h0, h0_b, h0_p, h0_f,u0)
