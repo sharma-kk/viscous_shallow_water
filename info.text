@@ -128,3 +128,16 @@ also mointoring instantaneous height minus balanced height
 testing geostrophic balance for test9
 Ran upto t = 7.5 ~ 144 hours
 
+############test11.py###########
+ran on 4 cores
+i took the script of test6 and ran for higher Re and Pe
+Re = Pe = 10^7
+made changes in number of time steps
+Observation: The solution converged. I didn't see much change in the solution.
+I think i should instead run with higher resolution to see what happens.
+I changed the resoultion. 
+Nx = 2*448
+Ny = 2*128 
+Running on the university's server. The files are saved in bax2322 folder
+Observation: The values of vorticity and the structure remained the same. The vorticity
+field looked smoother.
