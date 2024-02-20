@@ -141,3 +141,36 @@ Ny = 2*128
 Running on the university's server. The files are saved in bax2322 folder
 Observation: The values of vorticity and the structure remained the same. The vorticity
 field looked smoother.
+
+###########test12.py###########
+Ran model with increased diffusion. nu = 10^5.
+This assumption leads to decrease in Reynolds no.
+We take the model config in test6 and make suitable changes.
+Re = Pe = 6*10**3
+observation: I see results similar to Galewsky paper
+
+############test13.py###########
+removed viscous terms from both velocity and height equations
+kept the same FE spaces
+running the model config from test6
+Observation: THe model runs and results look similar to Galewsky test case.
+
+############test14.py###########
+ran the test6 configuration on coarse grid
+Nx = 112
+Ny = 32
+Observation: The solution converged. The vel field looked less smoother in comparison to fine grid.
+
+############test15.py###########
+ran the test6 configuration on coarse grid
+Nx = 112
+Ny = 32
+Changed the FE spaces to P2/P1
+projecting vorticiy of DG of degree 1 space. Earlier it was DG 0.
+Observations: The solution diverged at t=1.2. There were lot of oscillations in the velocity field.
+
+############test16.py###########
+configuration same as test15.py except running on fine grid
+Nx = 224
+Ny = 64
+Observation: The solution diverged again at t = 1.5. Lot of oscillation in the vel. field.
