@@ -82,11 +82,11 @@ outfile.write(u_, h_, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*550 # we are running for ~147 hours
+t_end = Dt*720 # we are running for ~194.4 hours
 
 t = Dt
 iter_n = 1
-freq = 10
+freq = 30
 t_step = freq*Dt
 current_time = time.strftime("%H:%M:%S", time.localtime())
 print("Local time at the start of simulation:",current_time)
