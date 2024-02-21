@@ -106,8 +106,8 @@ Same as test3.py but with more accurate parameters
 Ro = 0.3 ; Re = 3*10**5 ; B = 1.1 ; C = 0.06 ; Pe = 3*10**5
 Observation: upto time = 120 hours the solution looks pretty close to Galewsky test problem results
 Ran the model again after introduction alpha factor in the initial velocity
-Changes: ran for 550 time steps, B = 1.17
-In the end i chose to not run this test (second time), i just made the changes in the script
+Changes: ran for 720 time steps, B = 1.17
+Observations: The flow looks complex after long time. The max vel. remains close to 1.
 
 ##########test9.py#######
 location: ./parallel_run
