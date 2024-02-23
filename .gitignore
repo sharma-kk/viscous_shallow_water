@@ -1,3 +1,5 @@
 __pycache__/
 results/
 parallel_run/results
+script_info/
+parallel_run/script_info
