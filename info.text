@@ -46,8 +46,9 @@ initial veloctiy: similar to Galewsky test case
 unperturbed height, h0: geostrophic height
 perturbed height: 1 + h0 + 0.01*cos(math.pi*y/2)*exp(-4*(x  - 3.5)**2)*exp(-81*(y - 0.5)**2)
 Solution stored in ./results/rsw3.pvd file
-Ran for 600 time-steps
+Ran for 600 time-steps, printing every 10 tsteps
 Observations: The solution evolved to complex scales. The solution looks similar to Galewsky test case results.
+Ran again, this time for 930 time-steps/ 251 hours. Printing every 30 timesteps/ 8 hours
 
 ##########test4.py#######
 file is in ./parallel_run
@@ -106,8 +107,11 @@ Same as test3.py but with more accurate parameters
 Ro = 0.3 ; Re = 3*10**5 ; B = 1.1 ; C = 0.06 ; Pe = 3*10**5
 Observation: upto time = 120 hours the solution looks pretty close to Galewsky test problem results
 Ran the model again after introduction alpha factor in the initial velocity
-Changes: ran for 720 time steps, B = 1.17
-Observations: The flow looks complex after long time. The max vel. remains close to 1.
+Changes: ran for 720 time steps, B = 1.17, added code to print KE
+Observations: The flow looks complex after long time. The max vel. remains close to 1. The KE remains almost constant.
+changes: ran for 930 time steps
+Observations: I see vortices getting stabilized after long time. KE reduces a bit.
+Changes: ran for 2790 time steps. Interrupted the sim in the middle. at t=40.8
 
 ##########test9.py#######
 location: ./parallel_run
@@ -174,3 +178,11 @@ configuration same as test15.py except running on fine grid
 Nx = 224
 Ny = 64
 Observation: The solution diverged again at t = 1.5. Lot of oscillation in the vel. field.
+
+###########test17.py###########
+Config same as test8.py but with high res.
+Ran this code on uni server on 8 cores
+Nx = 256*7
+Ny = 256
+Dt = 0.01
+Ran for 2880 time-steps (16 days). The plots look beautiful. 

@@ -1,3 +1,4 @@
+import sys
 import os
 os.environ["OMP_NUM_THREADS"] = "1"
 # import numpy as np
@@ -76,18 +77,22 @@ vort_ = interpolate(u_[1].dx(0) - u_[0].dx(1), V0)
 vort_.rename("vorticity")
 h_.rename("height")
 u_.rename("velocity")
+energy_ = 0.5*(norm(u_)**2)
+KE = []
+KE.append(energy_)
+print(f'KE at time t=0: {round(energy_,6)}')
 
 outfile = File("./results/rsw8.pvd")
 outfile.write(u_, h_, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*720 # we are running for ~194.4 hours
+t_end = Dt*2790 # 31.5 days
 
 t = Dt
 iter_n = 1
 freq = 30
-t_step = freq*Dt
+t_step = freq*Dt # 8 hours
 current_time = time.strftime("%H:%M:%S", time.localtime())
 print("Local time at the start of simulation:",current_time)
 start_time = time.time()
@@ -95,6 +100,8 @@ start_time = time.time()
 while (round(t,4) <= t_end):
     solve(F == 0, uh, bcs = bound_cond)
     u, h = uh.subfunctions
+    energy = 0.5*(norm(u)**2)
+    KE.append(energy)
     if iter_n%freq == 0:
         if iter_n == freq:
             end_time = time.time()
@@ -104,6 +111,7 @@ while (round(t,4) <= t_end):
             print("Approx. total running time: %.2f minutes:" %total_execution_time)
 
         print("t=", round(t,4))
+        print("kinetic energy:", round(KE[-1],6))
         vort = interpolate(u[1].dx(0) - u[0].dx(1), V0)
         vort.rename("vorticity")
         h.rename("height")
@@ -114,3 +122,9 @@ while (round(t,4) <= t_end):
 
     t += Dt
     iter_n +=1
+
+print(f'Saving the KE into the .txt file \n')
+data_file = "./script_info/test8_data.txt"
+with open(data_file, 'w') as ff:
+     print(f'Data obtained after running the script: {os.path.basename(sys.argv[0])}', file = ff)
+     print(f'KE_over_time = {KE}', file = ff)
