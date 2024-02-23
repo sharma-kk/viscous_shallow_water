@@ -147,6 +147,7 @@ Observation: The values of vorticity and the structure remained the same. The vo
 field looked smoother.
 
 ###########test12.py###########
+Ran on 4 cores (not sure)
 Ran model with increased diffusion. nu = 10^5.
 This assumption leads to decrease in Reynolds no.
 We take the model config in test6 and make suitable changes.
@@ -181,8 +182,9 @@ Observation: The solution diverged again at t = 1.5. Lot of oscillation in the v
 
 ###########test17.py###########
 Config same as test8.py but with high res.
-Ran this code on uni server on 8 cores
+Ran this code on uni server on 8 cores. Didn't see much improvement when run on 16 cores. 16 min vs 13 min for 60 time steps.
 Nx = 256*7
 Ny = 256
 Dt = 0.01
-Ran for 2880 time-steps (16 days). The plots look beautiful. 
+Ran for 2880 time-steps (16 days). The plots look beautiful.
+Running again, this time for 30 days. 
