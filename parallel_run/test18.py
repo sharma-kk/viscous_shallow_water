@@ -61,7 +61,7 @@ h_.assign(h0_f)
 
 perp = lambda arg: as_vector((-arg[1], arg[0]))
 
-Dt =0.01 # 8.1 minutes
+Dt =0.02 # 16 minutes
 
 F = ( inner(u-u_,v)
     + Dt*0.5*(inner(dot(u, nabla_grad(u)), v) + inner(dot(u_, nabla_grad(u_)), v))
@@ -83,17 +83,17 @@ KE = []
 KE.append(energy_)
 PETSc.Sys.Print(f'KE at time t=0: {round(energy_,6)}')
 
-outfile = File("./results/rsw17.pvd")
+outfile = File("./results/rsw18.pvd")
 outfile.write(u_, h_, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*5400 # 30 days
+t_end = Dt*2700 # 30 days
 
 t = Dt
 iter_n = 1
-freq = 60
-t_step = freq*Dt
+freq = 30
+t_step = freq*Dt # 8 hours
 current_time = time.strftime("%H:%M:%S", time.localtime())
 PETSc.Sys.Print("Local time at the start of simulation:",current_time)
 start_time = time.time()
@@ -125,7 +125,9 @@ while (round(t,4) <= t_end):
     iter_n +=1
 
 PETSc.Sys.Print(f'Saving the KE into the .txt file \n')
-data_file = "./script_info/test17_data.txt"
+data_file = "./script_info/test18_data.txt"
 with open(data_file, 'w') as ff:
      print(f'Data obtained after running the script: {os.path.basename(sys.argv[0])}', file = ff)
      print(f'KE_over_time = {KE}', file = ff)
+
+PETSc.Sys.Print("Local time at the end of simulation:",time.strftime("%H:%M:%S", time.localtime()))

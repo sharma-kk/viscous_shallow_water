@@ -242,4 +242,11 @@ Nx = 256*7
 Ny = 256
 Dt = 0.01
 Ran for 2880 time-steps (16 days). The plots look beautiful.
-Running again, this time for 30 days. 
+Running again, this time for 30 days. Looking at the partial results i feel that
+i can increase the time step size for fine-grid. I should do the same run with big timestep and
+compare the results.
+
+###########test18.py###########
+Ran test17 configuration but this time with twice the time-step size.
+Ran on 8 cores on the uni's server. 
+Running time: 30 days
