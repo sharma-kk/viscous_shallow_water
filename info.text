@@ -242,7 +242,8 @@ Nx = 256*7
 Ny = 256
 Dt = 0.01
 Ran for 2880 time-steps (16 days). The plots look beautiful.
-Running again, this time for 30 days. Looking at the partial results i feel that
+Running again, this time for 30 days. I tooke ~ 26 hours to complete the run.
+Looking at the partial results i feel that
 i can increase the time step size for fine-grid. I should do the same run with big timestep and
 compare the results.
 
@@ -250,6 +251,6 @@ compare the results.
 Ran test17 configuration but this time with twice the time-step size (Dt = 0.02).
 Ran on 8 cores on the uni's server. 
 Running time: 30 days
-Observation: The kinetic remains almost similar until 16 days. After that i changes a bit but not by much.
+Observation: It took ~15 hours to complete the run. The kinetic remains almost similar until 16 days. After that i changes a bit but not by much.
 The vorticity and velocity plots look different after long time.
 I have feeling that for Re = 10**5, the spatial resolution still needs to be higher and time step should be even smaller. 
