@@ -260,3 +260,25 @@ Model 1 configuration
 Assuming constant Coriolis parameter (f-plane approximation)
 Observations: I could see complex flow structures emerging even with constant Coriolis parameter.
 I interrupted the simulation at t = 21.6.
+
+##########test20.py###########
+Model 1 configuration
+Height written as advection-diffusion
+I changed the weak formulation. I kept only the advection term in the height equation.
+Observation: The simulation exploded at after t =0.6. I don't know why that happend.
+Maybe because of P1/P1 FE.
+
+##########test21.py###########
+Model 1 configuation.
+Height written as advection-diffusion
+Weak formulation same as test19
+Changed FE space to P2/P1
+Observation: The solution diverged even before t = 0.6. I think there is a problem in the 
+way I am writing the weak formulation maybe.
+
+###########test22.py##########
+Model 1 configuration
+Height written as advection-diffusion
+I changed the weak formulation and wrote it differently. 
+P1/P1 FE spaces
+Observation:
