@@ -281,4 +281,4 @@ Model 1 configuration
 Height written as advection-diffusion
 I changed the weak formulation and wrote it differently. 
 P1/P1 FE spaces
-Observation:
+Observation: The solution diverged after t = 0.6.
