@@ -139,7 +139,7 @@ Changes: ran for 720 time steps, B = 1.17, added code to print KE
 Observations: The flow looks complex after long time. The max vel. remains close to 1. The KE remains almost constant.
 changes: ran for 930 time steps
 Observations: I see vortices getting stabilized after long time. KE reduces a bit.
-Changes: ran for 2790 time steps. Interrupted the sim in the middle. at t=40.8
+Changes: ran for 2790 time steps. Interrupted the sim in the middle. at t=40.8 (~ 23 days)
 
 ##########test9.py#######
 Configuration: Model 3
@@ -254,3 +254,9 @@ Running time: 30 days
 Observation: It took ~15 hours to complete the run. The kinetic remains almost similar until 16 days. After that i changes a bit but not by much.
 The vorticity and velocity plots look different after long time.
 I have feeling that for Re = 10**5, the spatial resolution still needs to be higher and time step should be even smaller. 
+
+##########test19.py###########
+Model 1 configuration
+Assuming constant Coriolis parameter (f-plane approximation)
+Observations: I could see complex flow structures emerging even with constant Coriolis parameter.
+I interrupted the simulation at t = 21.6.
