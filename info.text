@@ -142,7 +142,7 @@ Observations: I see vortices getting stabilized after long time. KE reduces a bi
 Changes: ran for 2790 time steps. Interrupted the sim in the middle. at t=40.8
 
 ##########test9.py#######
-Configuration: Model 1
+Configuration: Model 3
 y0 = 4/35 ; y1 = 31/35
 alpha = 1.14
 location: ./parallel_run
@@ -159,7 +159,7 @@ Now running again for 760 time steps which corresponds to 145 hours(with Dt = 0.
 also mointoring instantaneous height minus balanced height
 
 ############test10.py##########
-Configuration: Model 1
+Configuration: Model 3
 y0 = 4/35 ; y1 = 31/35
 alpha = 1.14
 testing geostrophic balance for test9
