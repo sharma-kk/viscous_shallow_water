@@ -282,3 +282,20 @@ Height written as advection-diffusion
 I changed the weak formulation and wrote it differently. 
 P1/P1 FE spaces
 Observation: The solution diverged after t = 0.6.
+
+###########test23.py##########
+Model 1 config
+constant corilis parameter
+Reducing Re, Pe
+Re = Pe = 3*10**3
+Obsservation: The spatial resolution was enough to resolve all scales created at Re ~ 10**3.
+
+###########test24.py##########
+Running on uni server on 8 cores
+Model 1 config
+Ny = 256
+constant corilis parameter
+Reducing Re, Pe
+Re = Pe = 3*10**3
+Observation: The result looks very similar to test23 which was run on a coarse grid.
+I interrupted the run at t = 33.0
