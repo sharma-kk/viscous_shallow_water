@@ -259,7 +259,7 @@ I have feeling that for Re = 10**5, the spatial resolution still needs to be hig
 Model 1 configuration
 Assuming constant Coriolis parameter (f-plane approximation)
 Observations: I could see complex flow structures emerging even with constant Coriolis parameter.
-I interrupted the simulation at t = 21.6. Ran again, this time until t = 54 (30 days).
+I interrupted the simulation at t = 21.6. Ran again, this time until t = 54 (30 days). CPU run time 1.5 hours
 
 ##########test20.py###########
 Model 1 configuration
@@ -304,8 +304,29 @@ I interrupted the run at t = 33.0
 Model 1 config
 Constant Coriolis parameter
 Re = Pe = 3*10**5
+Ly = 64
 Dt = 0.04 (32.4 minutes)
 Ran on uni server
 I want to compare results with test19 where Dt = 0.02.
 Observations: The results starts to differ (in comparison to test19) after 10 days. After 30 days, there is
 no similarity between the flows.
+
+###########test26.py##########
+Model 1 config
+Constant Coriolis parameter
+Re = Pe = 3*10**5
+Ny = 32 (120 km res.)
+Dt = 0.08 (32.4 minutes)
+I want to see if this resolution can handle Re = 3*10**5.
+First run:
+Observation: The solution diverged at t = 25.92/ 324 time-steps. I printed solution every 9.72 hours/ 9 time-steps.
+Maybe i can reduce the time step size to see if it make any difference.
+Second run:
+I reduced the time step to Dt = 0.04 and ran the test again. The solution diverged again around t = 25.8
+This means that this resolution can't handle Reynolds number of this order. 
+I should either reduced the Reynolds number or run the model on finer grids.
+Third run:
+Pe = Re = 3*10**4
+Ny = 32 (120 km res.)
+Dt = 0.08
+Observation: The test ran successfully this time !
