@@ -96,6 +96,7 @@ t_step = freq*Dt # 8 hours
 current_time = time.strftime("%H:%M:%S", time.localtime())
 print("Local time at the start of simulation:",current_time)
 start_time = time.time()
+data_file = "./script_info/test19_data.txt"
 
 while (round(t,4) <= t_end):
     solve(F == 0, uh, bcs = bound_cond)
@@ -112,6 +113,8 @@ while (round(t,4) <= t_end):
 
         print("t=", round(t,4))
         print("kinetic energy:", round(KE[-1],6))
+        with open(data_file, 'w') as ff:
+            print(f'KE_over_time = {KE}', file = ff)
         vort = interpolate(u[1].dx(0) - u[0].dx(1), V0)
         vort.rename("vorticity")
         h.rename("height")
@@ -122,11 +125,5 @@ while (round(t,4) <= t_end):
 
     t += Dt
     iter_n +=1
-
-print(f'Saving the KE into the .txt file \n')
-data_file = "./script_info/test19_data.txt"
-with open(data_file, 'w') as ff:
-     print(f'Data obtained after running the script: {os.path.basename(sys.argv[0])}', file = ff)
-     print(f'KE_over_time = {KE}', file = ff)
 
 print("Local time at the end of simulation:",time.strftime("%H:%M:%S", time.localtime()))
