@@ -330,3 +330,11 @@ Pe = Re = 3*10**4
 Ny = 32 (120 km res.)
 Dt = 0.08
 Observation: The test ran successfully this time !
+
+#############test27.py##########
+Model 1 config
+Constant Coriolis parameter
+Pe = Re = 3*10**4
+Ny = 64 (120 km res.)
+Dt = 0.04
+Observation: The vorticiy and vel fields look different (in comparison to test26) but have some resemblance to each other.

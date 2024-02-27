@@ -60,7 +60,7 @@ h_.assign(h0_f)
 
 perp = lambda arg: as_vector((-arg[1], arg[0]))
 
-Dt =0.08 # 64.2 minutes
+Dt =0.08 # 64 minutes
 
 F = ( inner(u-u_,v)
     + Dt*0.5*(inner(dot(u, nabla_grad(u)), v) + inner(dot(u_, nabla_grad(u_)), v))
@@ -92,7 +92,7 @@ t_end = Dt*675 # 30 days
 t = Dt
 iter_n = 1
 freq = 9
-t_step = freq*Dt # 9.72 hours
+t_step = freq*Dt # 9.6 hours
 current_time = time.strftime("%H:%M:%S", time.localtime())
 print("Local time at the start of simulation:",current_time)
 start_time = time.time()
