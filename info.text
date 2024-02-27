@@ -259,7 +259,7 @@ I have feeling that for Re = 10**5, the spatial resolution still needs to be hig
 Model 1 configuration
 Assuming constant Coriolis parameter (f-plane approximation)
 Observations: I could see complex flow structures emerging even with constant Coriolis parameter.
-I interrupted the simulation at t = 21.6.
+I interrupted the simulation at t = 21.6. Ran again, this time until t = 54 (30 days).
 
 ##########test20.py###########
 Model 1 configuration
@@ -299,3 +299,13 @@ Reducing Re, Pe
 Re = Pe = 3*10**3
 Observation: The result looks very similar to test23 which was run on a coarse grid.
 I interrupted the run at t = 33.0
+
+###########test25.py##########
+Model 1 config
+Constant Coriolis parameter
+Re = Pe = 3*10**5
+Dt = 0.04 (32.4 minutes)
+Ran on uni server
+I want to compare results with test19 where Dt = 0.02.
+Observations: The results starts to differ (in comparison to test19) after 10 days. After 30 days, there is
+no similarity between the flows.
