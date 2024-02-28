@@ -151,7 +151,19 @@ Changes: ran for 2790 time steps. Interrupted the sim in the middle. at t=40.8 (
 Run 5:
 Dt = 0.04
 Ran for 30 days
-Observations:
+Observations: I interrupted the flow in the start. The expected total run time was around 43 minutes.
+I then ran the same file on 2 cores and found out that expected time is 25 minutes. Hence i proceeded
+with running on 2 cores.
+Run 6:
+Dt = 0.04
+Ran for 30 days
+Ran on 2 cores
+Observationss: The solution diverged at t = 31.8. This means that the time-step is not small enough.
+Run 7:
+Dt = 0.02
+Ran for 30 days
+Ran on 2 cores
+Observations: The solution converged for all time steps.
 
 ##########test9.py#######
 Configuration: Model 3
