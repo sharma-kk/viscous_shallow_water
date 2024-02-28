@@ -128,18 +128,30 @@ We are taking more accurate non-dimensional parameters this time.
 Observation: The geostrophic balance hold for 120 hours.
 
 ##########test8.py#######
+Run 1:
 Configuration: Model 1
 y0 = 1/14 ; y1 = 13/14
 alpha = 1.64
+Dt = 0.02
 Same as test3.py but with more accurate parameters
 Ro = 0.3 ; Re = 3*10**5 ; B = 1.1 ; C = 0.06 ; Pe = 3*10**5
 Observation: upto time = 120 hours the solution looks pretty close to Galewsky test problem results
 Ran the model again after introduction alpha factor in the initial velocity
+Run 2:
+Dt = 0.02
 Changes: ran for 720 time steps, B = 1.17, added code to print KE
 Observations: The flow looks complex after long time. The max vel. remains close to 1. The KE remains almost constant.
+Run 3:
+Dt = 0.02
 changes: ran for 930 time steps
 Observations: I see vortices getting stabilized after long time. KE reduces a bit.
+Run 4:
+Dt = 0.02
 Changes: ran for 2790 time steps. Interrupted the sim in the middle. at t=40.8 (~ 23 days)
+Run 5:
+Dt = 0.04
+Ran for 30 days
+Observations:
 
 ##########test9.py#######
 Configuration: Model 3

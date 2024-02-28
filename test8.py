@@ -60,7 +60,7 @@ h_.assign(h0_f)
 
 perp = lambda arg: as_vector((-arg[1], arg[0]))
 
-Dt =0.02 # 16.2 minutes
+Dt =0.04 # 32.4 minutes
 
 F = ( inner(u-u_,v)
     + Dt*0.5*(inner(dot(u, nabla_grad(u)), v) + inner(dot(u_, nabla_grad(u_)), v))
@@ -87,15 +87,16 @@ outfile.write(u_, h_, vort_)
 
 # time stepping and visualization at other time steps
 t_start = Dt
-t_end = Dt*2790 # 31.5 days
+t_end = Dt*1350 # 30 days
 
 t = Dt
 iter_n = 1
-freq = 30
+freq = 15
 t_step = freq*Dt # 8 hours
 current_time = time.strftime("%H:%M:%S", time.localtime())
 print("Local time at the start of simulation:",current_time)
 start_time = time.time()
+data_file = "./script_info/test8_data.txt"
 
 while (round(t,4) <= t_end):
     solve(F == 0, uh, bcs = bound_cond)
@@ -112,6 +113,8 @@ while (round(t,4) <= t_end):
 
         print("t=", round(t,4))
         print("kinetic energy:", round(KE[-1],6))
+        with open(data_file, 'w') as ff:
+            print(f'KE_over_time = {KE}', file = ff)
         vort = interpolate(u[1].dx(0) - u[0].dx(1), V0)
         vort.rename("vorticity")
         h.rename("height")
@@ -123,8 +126,4 @@ while (round(t,4) <= t_end):
     t += Dt
     iter_n +=1
 
-print(f'Saving the KE into the .txt file \n')
-data_file = "./script_info/test8_data.txt"
-with open(data_file, 'w') as ff:
-     print(f'Data obtained after running the script: {os.path.basename(sys.argv[0])}', file = ff)
-     print(f'KE_over_time = {KE}', file = ff)
+print("Local time at the end of simulation:",time.strftime("%H:%M:%S", time.localtime()))
