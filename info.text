@@ -372,3 +372,5 @@ Ny = 64 (120 km res.)
 Dt = 0.04
 P2/P1 finite elements used. Height equation in conservation form.
 printing results every 8 hours. Ran till 10 days. 
+Observations: Simulation ran successfully. When compared to test27, the fields look different at the end of 10 days. 
+To do: save the pictures and delete pvd files. 
