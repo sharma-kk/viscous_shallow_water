@@ -362,3 +362,13 @@ Pe = Re = 3*10**4
 Ny = 64 (120 km res.)
 Dt = 0.04
 Observation: The vorticiy and vel fields look different (in comparison to test26) but have some resemblance to each other.
+
+##########test28.py############
+Ran on 4 cores
+Model 1 config
+Constant coriolis parameter
+Pe = Re = 3*10**4
+Ny = 64 (120 km res.)
+Dt = 0.04
+P2/P1 finite elements used. Height equation in conservation form.
+printing results every 8 hours. Ran till 10 days. 
